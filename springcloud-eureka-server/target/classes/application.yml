@@ -1,0 +1,16 @@
+# 指定项目端口号
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost    # 指定eureka注册中心地址
+  client:
+    register-with-eureka: false    # 表示是否自己注册到Eureka server 默认为true
+    fetch-registry: false    # 表示是否从Eureka Server获取信息
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+spring:
+  application:
+    name: springcloud-eureka-server
