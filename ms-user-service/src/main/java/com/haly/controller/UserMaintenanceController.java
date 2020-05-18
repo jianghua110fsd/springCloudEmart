@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.haly.entity.BuyerEntity;
 import com.haly.entity.SellerEntity;
+import com.haly.pojo.BuyerSignServicePojo;
+import com.haly.pojo.SellerSignServicePojo;
 import com.haly.service.UserMaintenanceService;
 
 /**
@@ -45,8 +47,8 @@ public class UserMaintenanceController
     }
 
     @GetMapping(value = "binsert")
-    public BuyerEntity insertBuser(BuyerEntity buyerInfo) {
-        return userMaintenanceService.saveBuyer(buyerInfo);
+    public BuyerSignServicePojo insertBuser(BuyerSignServicePojo buyerPojo) {
+        return userMaintenanceService.saveBuyer(buyerPojo);
     }
 
     @RequestMapping("/ssearch")
@@ -56,13 +58,14 @@ public class UserMaintenanceController
     	SellerEntity sellerInfo = userMaintenanceService.getSellerInfo(sellerId);
     	
     	if (sellerInfo == null) {
-    		return new SellerEntity();
+//    		return new SellerEntity();
+    		return null;
     	} else {
     		return sellerInfo;
     	}
     }
     @GetMapping(value = "sinsert")
-    public SellerEntity insertSuser(SellerEntity sellerInfo) {
+    public SellerSignServicePojo insertSuser(SellerSignServicePojo sellerInfo) {
         return userMaintenanceService.saveSeller(sellerInfo);
     }
 }

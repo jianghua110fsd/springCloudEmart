@@ -4,6 +4,8 @@
 package com.haly.service;
 import com.haly.entity.BuyerEntity;
 import com.haly.entity.SellerEntity;
+import com.haly.pojo.BuyerSignServicePojo;
+import com.haly.pojo.SellerSignServicePojo;
 
 /**
  * @author JiangHua
@@ -22,7 +24,7 @@ public interface UserMaintenanceService {
      * @param buyerInfo
      * @return
      */
-	BuyerEntity saveBuyer(BuyerEntity buyerInfo);
+	BuyerSignServicePojo saveBuyer(BuyerSignServicePojo buyerPojo);
 
     /**
      * get SellerInfo
@@ -36,5 +38,5 @@ public interface UserMaintenanceService {
      * @param sellerInfo
      * @return
      */
-	SellerEntity saveSeller(SellerEntity sellerInfo);
+	SellerSignServicePojo saveSeller(SellerSignServicePojo sellerPojo);
 }

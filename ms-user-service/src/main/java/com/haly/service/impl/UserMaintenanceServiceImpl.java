@@ -9,6 +9,8 @@ import com.haly.dao.BuyerDao;
 import com.haly.dao.SellerDao;
 import com.haly.entity.BuyerEntity;
 import com.haly.entity.SellerEntity;
+import com.haly.pojo.BuyerSignServicePojo;
+import com.haly.pojo.SellerSignServicePojo;
 import com.haly.service.UserMaintenanceService;
 
 /**
@@ -33,8 +35,14 @@ public class UserMaintenanceServiceImpl implements UserMaintenanceService {
      * insert buyer
      */
     @Override
-    public BuyerEntity saveBuyer(BuyerEntity buyerInfo) {
-        return buyerDao.saveAndFlush(buyerInfo);
+    public BuyerSignServicePojo saveBuyer(BuyerSignServicePojo buyerPojo) {
+
+    	BuyerEntity buyerEntity = new BuyerEntity(buyerPojo.getBuyerId(),buyerPojo.getBuyerName(),
+    			buyerPojo.getPassword(),buyerPojo.getEmail(),buyerPojo.getPostalAddress(),buyerPojo.getPostalAddress());
+    	
+        buyerDao.saveAndFlush(buyerEntity);
+        return buyerPojo;
+    	
     }
     
 	@Autowired
@@ -52,9 +60,13 @@ public class UserMaintenanceServiceImpl implements UserMaintenanceService {
      * insert buyer
      */
     @Override
-    public SellerEntity saveSeller(SellerEntity sellerInfo) {
-        return sellerDao.saveAndFlush(sellerInfo);
+    public SellerSignServicePojo saveSeller(SellerSignServicePojo sellerPojo) {
+
+    	SellerEntity sellerEntity = new SellerEntity(sellerPojo.getSellerId(),sellerPojo.getSellerName(),
+    			sellerPojo.getPassword(),sellerPojo.getCompanyName(),sellerPojo.getCompanyBrief(),sellerPojo.getGSTN(),
+    			sellerPojo.getPostalAddress(),sellerPojo.getWebsite(),sellerPojo.getEmail(),sellerPojo.getContactNumber());
+    	
+        sellerDao.saveAndFlush(sellerEntity);
+        return sellerPojo;
     }
-
-
 }

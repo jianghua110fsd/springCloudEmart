@@ -2,17 +2,12 @@ package com.haly.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import com.haly.entity.common.DateItemEntity;
 
 @Entity
 @Table(name = "seller_profile_tbl")
-@EntityListeners(AuditingEntityListener.class)
 public class SellerEntity extends DateItemEntity implements java.io.Serializable  {
 
 	/**
@@ -38,7 +33,7 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 	private String GSTN;
 	
 	@Column(name = "company_brief")
-	private int companyBrief;
+	private String companyBrief;
 	
 	@Column(name = "postal_address")
 	private String postalAddress;
@@ -52,6 +47,33 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 	@Column(name = "contact_number")
 	private String contactNumber;
 
+	public SellerEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public SellerEntity(String sellerId, String sellerName, String password, String companyName, String GSTN, String companyBrief,
+			String postalAddress, String website, String email, String contactNumber) {
+		super();
+		this.sellerId = sellerId;
+		this.sellerName = sellerName;
+		this.password = password;
+		this.companyName = companyName;
+		this.GSTN = GSTN;
+		this.companyBrief = companyBrief;
+		this.postalAddress = postalAddress;
+		this.website = website;
+		this.email = email;
+		this.contactNumber = contactNumber;
+	}
+	
+	@Override
+	public String toString() {
+		return "SellerSignupServiceEntity [sellerId=" + sellerId + ", sellerName=" + sellerName + ", password=" + password
+				+ ", companyName=" + companyName + ", GSTN=" + GSTN + ", companyBrief=" + companyBrief + ", postalAddress=" + postalAddress
+				+ ", website=" + website + ", email=" + email + ", contactNumber=" + contactNumber + "]";
+	}
+	
 	/**
 	 * @return the sellerId
 	 */
@@ -125,14 +147,14 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 	/**
 	 * @return the companyBrief
 	 */
-	public int getCompanyBrief() {
+	public String getCompanyBrief() {
 		return companyBrief;
 	}
 
 	/**
 	 * @param companyBrief the companyBrief to set
 	 */
-	public void setCompanyBrief(int companyBrief) {
+	public void setCompanyBrief(String companyBrief) {
 		this.companyBrief = companyBrief;
 	}
 
