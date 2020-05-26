@@ -11,7 +11,7 @@ public class MyConfiguration extends WebMvcConfigurationSupport {
 	public void addCorsMappings(CorsRegistry registry) {
 	    super.addCorsMappings(registry);
 	    registry
-	    		.addMapping("/user/**")
+	    		.addMapping("/ms-user-service/user/**")
 	            .allowedHeaders("*")
 	            .allowedMethods("POST","GET")
 	            .allowCredentials(false).maxAge(3600)

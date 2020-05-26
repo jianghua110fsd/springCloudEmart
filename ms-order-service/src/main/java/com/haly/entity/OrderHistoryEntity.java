@@ -4,15 +4,20 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.haly.entity.common.DateItemEntity;
 
 @Entity
 @Table(name = "order_history_tbl")
+@EntityListeners(AuditingEntityListener.class)
 public class OrderHistoryEntity extends DateItemEntity implements java.io.Serializable  {
 
 	/**
@@ -23,19 +28,19 @@ public class OrderHistoryEntity extends DateItemEntity implements java.io.Serial
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "order_no")
-    private String orderNo;
+    private int orderNo;
 
     @Column(name = "buyer_id")
     private String buyerId;
     
     @Column(name = "buyer_name")
     private String buyerName;
-
+    
     @Column(name = "seller_id")
     private String sellerId;
-    
+
     @Column(name = "transaction_id")
-    private String transactionId;
+    private int transactionId;
     
     @Column(name = "product_id")
     private String productId;
@@ -53,16 +58,17 @@ public class OrderHistoryEntity extends DateItemEntity implements java.io.Serial
     private float purchaseAmount;
     
     @Column(name = "purchase_date")
+    @LastModifiedDate 
     private Date purchaseDate;
     
     @Column(name = "remarks")
     private String remarks;
 
-	public String getOrderNo() {
+	public int getOrderNo() {
 		return orderNo;
 	}
 
-	public void setOrderNo(String orderNo) {
+	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
 
@@ -90,11 +96,11 @@ public class OrderHistoryEntity extends DateItemEntity implements java.io.Serial
 		this.sellerId = sellerId;
 	}
 
-	public String getTransactionId() {
+	public int getTransactionId() {
 		return transactionId;
 	}
 
-	public void setTransactionId(String transactionId) {
+	public void setTransactionId(int transactionId) {
 		this.transactionId = transactionId;
 	}
 

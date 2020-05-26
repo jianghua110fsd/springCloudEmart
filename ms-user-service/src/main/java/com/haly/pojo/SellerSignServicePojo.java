@@ -6,7 +6,7 @@ public class SellerSignServicePojo {
 		private String sellerName;
 		private String password;
 		private String companyName;
-		private String GSTN;
+		private String GSTIN;
 		private String companyBrief;
 		private String postalAddress;
 		private String  website;
@@ -16,14 +16,14 @@ public class SellerSignServicePojo {
 		public SellerSignServicePojo() {
 			super();
 		}
-		public SellerSignServicePojo(String sellerId, String sellerName, String password, String companyName, String GSTN, String companyBrief,
+		public SellerSignServicePojo(String sellerId, String sellerName, String password, String companyName, String GSTIN, String companyBrief,
 				String postalAddress, String website, String email, String contactNumber) {
 			super();
 			this.sellerId = sellerId;
 			this.sellerName = sellerName;
 			this.password = password;
 			this.companyName = companyName;
-			this.GSTN = GSTN;
+			this.GSTIN = GSTIN;
 			this.companyBrief = companyBrief;
 			this.postalAddress = postalAddress;
 			this.website = website;
@@ -33,7 +33,7 @@ public class SellerSignServicePojo {
 		@Override
 		public String toString() {
 			return "SellerSignupServicePojo [sellerId=" + sellerId + ", sellerName=" + sellerName + ", password=" + password
-					+ ", companyName=" + companyName + ", GSTN=" + GSTN + ", companyBrief=" + companyBrief + ", postalAddress=" + postalAddress + ", website=" + website
+					+ ", companyName=" + companyName + ", GSTIN=" + GSTIN + ", companyBrief=" + companyBrief + ", postalAddress=" + postalAddress + ", website=" + website
 				    + ", email=" + email  + ", contactNumber=" + contactNumber + "]";
 		}
 		/**
@@ -84,18 +84,20 @@ public class SellerSignServicePojo {
 		public void setCompanyName(String companyName) {
 			this.companyName = companyName;
 		}
+
 		/**
-		 * @return the gSTN
+		 * @return the gSTIN
 		 */
-		public String getGSTN() {
-			return GSTN;
+		public String getGSTIN() {
+			return GSTIN;
 		}
 		/**
-		 * @param gSTN the gSTN to set
+		 * @param gSTIN the gSTIN to set
 		 */
-		public void setGSTN(String gSTN) {
-			GSTN = gSTN;
+		public void setGSTIN(String gSTIN) {
+			GSTIN = gSTIN;
 		}
+		
 		/**
 		 * @return the companyBrief
 		 */

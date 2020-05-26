@@ -2,10 +2,9 @@ package com.haly.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import com.haly.entity.common.DateItemEntity;
 
 @Entity
@@ -18,7 +17,7 @@ public class BuyerEntity extends DateItemEntity implements java.io.Serializable 
 	private static final long serialVersionUID = -2305639287530146074L;
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+//    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "buyer_id")
     private String buyerId;
 
@@ -36,7 +35,26 @@ public class BuyerEntity extends DateItemEntity implements java.io.Serializable 
     
     @Column(name = "postal_address")
     private String postalAddress;
-    
+
+	public BuyerEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public BuyerEntity(String buyerId, String buyerName, String email, String mobileNumber, String postalAddress) {
+		super();
+		this.buyerId = buyerId;
+		this.buyerName = buyerName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.postalAddress = postalAddress;
+	}
+	
+	@Override
+	public String toString() {
+		return "BuyerEntity [buyerId=" + buyerId + ", buyerName=" + buyerName + ", email=" + email 
+				+ ", mobileNumber=" + mobileNumber + ", postalAddress=" + postalAddress  + "]";
+	}
 	/**
 	 * @return the buyerId
 	 */

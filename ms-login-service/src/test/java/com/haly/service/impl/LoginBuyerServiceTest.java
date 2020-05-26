@@ -1,13 +1,11 @@
-/**
- * 
- */
 package com.haly.service.impl;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import com.haly.MsLoginApplication;
+import com.haly.dao.BuyerDao;
 import com.haly.entity.BuyerEntity;
 
 /**
@@ -19,19 +17,37 @@ import com.haly.entity.BuyerEntity;
 public class LoginBuyerServiceTest  {
 
 	@Autowired
-	private LoginServiceImpl loginService;
+	private LoginBuyerServiceImpl loginService;
+	
+	@Autowired
+	private BuyerDao buyerDao;
+
 	
 	/**
-	 * Search buyer 
+	 * Search buyer all
 	 *
 	 */
 	@Test
 	@Transactional
     public void testGetBuyer() {
 		
-		// Search buyer data
-		BuyerEntity buyerResult = loginService.getBuyerInfo("11111", "001");
+		
+		// Create and Insert data for this test
+		// Create
+		BuyerEntity buyerInfo = new BuyerEntity();
+
+    	buyerInfo.setBuyerId("000123");
+    	buyerInfo.setBuyerName("testBuyer");
+    	buyerInfo.setEmail("test@ssss");
+    	buyerInfo.setMobileNumber("01010101");
+    	buyerInfo.setPassword("testbu");
+    	buyerInfo.setPostalAddress("dalian");
+		this.buyerDao.save(buyerInfo);
+		
+		// Search product data all
+		BuyerEntity buyerResult = loginService.getBuyerInfo("000123", "testbu");
+    	
 		// See if search results meet expected
-		assertEquals("11111",buyerResult.getBuyerId());
+		assertEquals("testBuyer", buyerResult.getBuyerName());
     }
 }

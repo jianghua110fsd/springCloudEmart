@@ -3,10 +3,10 @@
  */
 package com.haly.service.impl;
 
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,7 @@ import com.haly.service.OrderGenerateService;
  *
  */
 @Service
+@Transactional
 public class OrderGenerateServiceImpl implements OrderGenerateService {
 
 	@Autowired
@@ -35,18 +36,10 @@ public class OrderGenerateServiceImpl implements OrderGenerateService {
 	@Override
 	public String generateOrders(List<OrderReqEntity> ords) {
 		
-		// Generate order records
-		for (OrderReqEntity ord: ords) {
-			OrderHistoryEntity oh = new OrderHistoryEntity();
-			BeanUtils.copyProperties(ord, oh);
-			oh.setPurchaseDate(new Date());
-			
-			this.orderDao.save(oh);
-		}
-		
 		// Generate a tranaction record
 		TransactionEntity trn = new TransactionEntity();
 		
+		// Deleted due to Transaction ID becoming to Auto Increacement
 //		// Transaction ID generate
 //		String maxTrnId = this.transactionDao.queryMaxTransactionId();
 //		if (maxTrnId == null) {
@@ -59,11 +52,23 @@ public class OrderGenerateServiceImpl implements OrderGenerateService {
 		trn.setTransactionType(ords.get(0).getTransactionType());
 		trn.setBuyerId(ords.get(0).getBuyerId());
 		trn.setTransactionAmount(ords.get(0).getTransactionAmount());
-		trn.setTransactionDate(new Date());
+		// Transaction date auto generated
+//		trn.setTransactionDate(new Date());
 		
-		TransactionEntity rtnTrn = this.transactionDao.saveAndFlush(trn);
-		return rtnTrn.getTransactionId();
+		TransactionEntity rtnTrn = this.transactionDao.save(trn);
 		
+		// Generate order records
+		for (OrderReqEntity ord: ords) {
+			OrderHistoryEntity oh = new OrderHistoryEntity();
+			BeanUtils.copyProperties(ord, oh);
+			// Purchase date auto generated
+//			oh.setPurchaseDate(new Date());
+			oh.setTransactionId(rtnTrn.getTransactionId());
+			
+			this.orderDao.save(oh);
+		}
+		
+		return String.valueOf(rtnTrn.getTransactionId());
 	}
 	
 	

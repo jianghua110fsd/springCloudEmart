@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.haly.entity.OrderHistoryEntity;
 import com.haly.entity.request.SearchConditionForSellerEntity;
+import com.haly.entity.response.OrderRespEntity;
+import com.haly.entity.response.TransRespEntity;
 import com.haly.service.OrderSearchService;
+import com.haly.service.TransSearchService;
 
 /**
  * Controller for searching orders both for buyer and seller
@@ -25,15 +28,18 @@ public class OrderSearchController
 	@Autowired
 	private OrderSearchService orderSearchService;
 	
+	@Autowired
+	private TransSearchService transSearchService;
+	
 	
 	@RequestMapping("/bsearchall")
-	public List<OrderHistoryEntity> buyerOrderSearchAll(@RequestParam(value = "buyer") String buyerId) {
+	public List<OrderRespEntity> buyerOrderSearchAll(@RequestParam(value = "buyer") String buyerId) {
 		return this.orderSearchService.getOrdersByBuyerId(buyerId);
 	}
 	
 	@RequestMapping("/ssearchall")
-	public List<OrderHistoryEntity> sellerOrderSearchAll(@RequestParam(value = "seller") String sellerId) {
-		return this.orderSearchService.getOrdersBySellerId(sellerId);
+	public List<TransRespEntity> sellerOrderSearchAll(@RequestParam(value = "seller") String sellerId) {
+		return this.transSearchService.getOrdersBySellerId(sellerId);
 	}
     
     @RequestMapping("/ssearch")
@@ -55,8 +61,9 @@ public class OrderSearchController
     public Page<OrderHistoryEntity> sellerOrderPagingSearch() {
     	
     	SearchConditionForSellerEntity scond = new SearchConditionForSellerEntity();
-    	scond.setBuyerName("b11");
-    	scond.setPurchaseDateFrom("2020-03-01");
+    	scond.setSellerId("s11");
+//    	scond.setBuyerName("b11");
+    	scond.setPurchaseDateFrom("2020-03-02");
     	scond.setPurchaseDateTo("2020-03-10");
     	scond.setPage(0);
     	scond.setSize(2);

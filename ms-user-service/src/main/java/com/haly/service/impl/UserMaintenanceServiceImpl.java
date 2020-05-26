@@ -63,7 +63,7 @@ public class UserMaintenanceServiceImpl implements UserMaintenanceService {
     public SellerSignServicePojo saveSeller(SellerSignServicePojo sellerPojo) {
 
     	SellerEntity sellerEntity = new SellerEntity(sellerPojo.getSellerId(),sellerPojo.getSellerName(),
-    			sellerPojo.getPassword(),sellerPojo.getCompanyName(),sellerPojo.getCompanyBrief(),sellerPojo.getGSTN(),
+    			sellerPojo.getPassword(),sellerPojo.getCompanyName(),sellerPojo.getCompanyBrief(),sellerPojo.getGSTIN(),
     			sellerPojo.getPostalAddress(),sellerPojo.getWebsite(),sellerPojo.getEmail(),sellerPojo.getContactNumber());
     	
         sellerDao.saveAndFlush(sellerEntity);

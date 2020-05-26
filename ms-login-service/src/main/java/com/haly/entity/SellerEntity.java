@@ -50,6 +50,32 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 	@Column(name = "contact_number")
 	private String contactNumber;
 
+	public SellerEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public SellerEntity(String sellerId, String sellerName, String companyName, String GSTN, String companyBrief,
+			String postalAddress, String website, String email, String contactNumber) {
+		super();
+		this.sellerId = sellerId;
+		this.sellerName = sellerName;
+		this.companyName = companyName;
+		this.GSTN = GSTN;
+		this.companyBrief = companyBrief;
+		this.postalAddress = postalAddress;
+		this.website = website;
+		this.email = email;
+		this.contactNumber = contactNumber;
+	}
+	
+	@Override
+	public String toString() {
+		return "SellerEntity [sellerId=" + sellerId + ", sellerName=" + sellerName + ", companyName=" + companyName 
+	            + ", GSTN=" + GSTN + ", companyBrief=" + companyBrief + ", postalAddress=" + postalAddress
+				+ ", website=" + website + ", email=" + email + ", contactNumber=" + contactNumber + "]";
+	}
+	
 	/**
 	 * @return the sellerId
 	 */

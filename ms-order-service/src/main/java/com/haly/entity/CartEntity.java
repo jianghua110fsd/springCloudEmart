@@ -1,8 +1,7 @@
 package com.haly.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,20 +10,15 @@ import com.haly.entity.common.DateItemEntity;
 
 @Entity
 @Table(name = "cart_tbl")
-public class CartEntity extends DateItemEntity implements java.io.Serializable  {
+public class CartEntity extends DateItemEntity implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4493084902309559201L;
+	private static final long serialVersionUID = 8974551808519453006L;
 
-	@Id
-    @Column(name = "buyer_id")
-    private String buyerId;
-
-	@Id
-	@Column(name = "product_id")
-	private String productId;
+	@EmbeddedId
+	private CartEntityPk cartPk;
 	
 	@Column(name = "product_name")
 	private String productName;
@@ -42,19 +36,16 @@ public class CartEntity extends DateItemEntity implements java.io.Serializable  
     @Column(name = "purchase_amount")
     private float purchaseAmount;
     
-    @Column(name = "purchaseDate")
-    private Date purchase_date;
-    
     @Column(name = "remarks")
     private String remarks;
 
-
-	public String getBuyerId() {
-		return buyerId;
+    
+	public CartEntityPk getCartPk() {
+		return cartPk;
 	}
 
-	public void setBuyerId(String buyerId) {
-		this.buyerId = buyerId;
+	public void setCartPk(CartEntityPk cartPk) {
+		this.cartPk = cartPk;
 	}
 
 	public String getSellerId() {
@@ -63,14 +54,6 @@ public class CartEntity extends DateItemEntity implements java.io.Serializable  
 
 	public void setSellerId(String sellerId) {
 		this.sellerId = sellerId;
-	}
-
-	public String getProductId() {
-		return productId;
-	}
-
-	public void setProductId(String productId) {
-		this.productId = productId;
 	}
 
 	public String getProductName() {
@@ -103,14 +86,6 @@ public class CartEntity extends DateItemEntity implements java.io.Serializable  
 
 	public void setPurchaseAmount(float purchaseAmount) {
 		this.purchaseAmount = purchaseAmount;
-	}
-
-	public Date getPurchase_date() {
-		return purchase_date;
-	}
-
-	public void setPurchase_date(Date purchase_date) {
-		this.purchase_date = purchase_date;
 	}
 
 	public String getRemarks() {

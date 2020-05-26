@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import com.haly.dao.OrderDao;
 import com.haly.entity.OrderHistoryEntity;
 import com.haly.entity.request.SearchConditionForSellerEntity;
+import com.haly.entity.response.OrderRespEntity;
 import com.haly.service.OrderSearchService;
 
 /**
@@ -38,24 +39,13 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 	private OrderDao orderDao;
 	
 	@Override
-	public List<OrderHistoryEntity> getOrdersByBuyerId(String buyerId) {
+	public List<OrderRespEntity> getOrdersByBuyerId(String buyerId) {
 		
 		List<Order> orders = new ArrayList<>();
-        orders.add(new Order(Direction.DESC, "createDatetime"));
+        orders.add(new Order(Direction.DESC, "purchaseDate"));
         
-		List<OrderHistoryEntity> ordList = 
+		List<OrderRespEntity> ordList = 
 				this.orderDao.queryOrderByBuyerId(buyerId, Sort.by(orders));
-		return ordList;
-	}
-
-	@Override
-	public List<OrderHistoryEntity> getOrdersBySellerId(String sellerId) {
-		
-		List<Order> orders = new ArrayList<>();
-        orders.add(new Order(Direction.DESC, "createDatetime"));
-        
-		List<OrderHistoryEntity> ordList = 
-				this.orderDao.queryOrderBySellerId(sellerId, Sort.by(orders));
 		return ordList;
 	}
 
@@ -63,7 +53,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 	public List<OrderHistoryEntity> getOrdersByCondForSeller(SearchConditionForSellerEntity scond) {
         
 		List<Order> orders = new ArrayList<>();
-        orders.add(new Order(Direction.DESC, "createDatetime"));
+        orders.add(new Order(Direction.DESC, "purchaseDate"));
         
         return this.orderDao.findAll(this.getSpecForSellerSearchCond(scond), Sort.by(orders));
     }
@@ -72,7 +62,7 @@ public class OrderSearchServiceImpl implements OrderSearchService {
 	public Page<OrderHistoryEntity> getPageOrdersByCondForSeller(SearchConditionForSellerEntity scond) {
 		
 		List<Order> orders = new ArrayList<>();
-        orders.add(new Order(Direction.DESC, "createDatetime"));
+        orders.add(new Order(Direction.DESC, "purchaseDate"));
         
 		Pageable pageable = PageRequest.of(scond.getPage(), scond.getSize(), Sort.by(orders));
 		return this.orderDao.findAll(this.getSpecForSellerSearchCond(scond), pageable);

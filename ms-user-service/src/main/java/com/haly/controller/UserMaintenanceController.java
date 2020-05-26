@@ -1,8 +1,10 @@
 package com.haly.controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,21 +22,11 @@ import com.haly.service.UserMaintenanceService;
 @RestController
 @RequestMapping("/user")
 public class UserMaintenanceController 
-{
-	
-	@Value("${server.port}")
-	String port;
-	
+{	
 	@Autowired
 	private UserMaintenanceService userMaintenanceService;
-
-    @RequestMapping("/hello")
-    public String hello(@RequestParam(value = "name", defaultValue = "可苦可乐") String name) {
-    	return name + ",welcome to springcloud! server port:" + port;
-    }
     
     @RequestMapping("/bsearch")
-    @CrossOrigin(origins = "*")
     public BuyerEntity searchBuyer(@RequestParam(value = "buyerId") String buyerId) {
     	
     	BuyerEntity buyerInfo = userMaintenanceService.getBuyerInfo(buyerId);
@@ -46,26 +38,32 @@ public class UserMaintenanceController
     	}
     }
 
-    @GetMapping(value = "binsert")
-    public BuyerSignServicePojo insertBuser(BuyerSignServicePojo buyerPojo) {
-        return userMaintenanceService.saveBuyer(buyerPojo);
+	@Autowired
+	private UserMaintenanceService userBInsertService;
+	
+    @PostMapping("/binsert")
+    @CrossOrigin
+    public BuyerSignServicePojo insertBuyer(@RequestBody BuyerSignServicePojo buyerPojo) {
+        return userBInsertService.saveBuyer(buyerPojo);
     }
 
     @RequestMapping("/ssearch")
-    @CrossOrigin(origins = "*")
     public SellerEntity searchSeller(@RequestParam(value = "sellerId") String sellerId) {
     	
     	SellerEntity sellerInfo = userMaintenanceService.getSellerInfo(sellerId);
     	
     	if (sellerInfo == null) {
-//    		return new SellerEntity();
     		return null;
     	} else {
     		return sellerInfo;
     	}
     }
-    @GetMapping(value = "sinsert")
-    public SellerSignServicePojo insertSuser(SellerSignServicePojo sellerInfo) {
-        return userMaintenanceService.saveSeller(sellerInfo);
+	@Autowired
+	private UserMaintenanceService userSInsertService;
+	
+	@PostMapping(value = "/sinsert")
+	@CrossOrigin
+    public SellerSignServicePojo insertSuser(@RequestBody SellerSignServicePojo sellerInfo) {
+        return userSInsertService.saveSeller(sellerInfo);
     }
 }

@@ -2,18 +2,21 @@ package com.haly.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.haly.entity.common.DateItemEntity;
 
 @Entity
 @Table(name = "buyer_profile_tbl")
+@EntityListeners(AuditingEntityListener.class)
 public class BuyerEntity extends DateItemEntity implements java.io.Serializable  {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2305639287530146074L;
+	private static final long serialVersionUID = -5043206281215565072L;
 
 	@Id
 	@Column(name = "buyer_id")
@@ -51,7 +54,7 @@ public class BuyerEntity extends DateItemEntity implements java.io.Serializable 
 	
 	@Override
 	public String toString() {
-		return "SellerSignupServiceEntity [buyerId=" + buyerId + ", buyerName=" + buyerName + ", password=" + password
+		return "ByuerEntity [buyerId=" + buyerId + ", buyerName=" + buyerName + ", password=" + password
 				+ ", email=" + email + ", mobileNumber=" + mobileNumber + ", postalAddress=" + postalAddress  + "]";
 	}
 	

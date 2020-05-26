@@ -1,8 +1,6 @@
 package com.haly.entity.request;
 
-import com.haly.entity.common.DateItemEntity;
-
-public class OrderReqEntity extends DateItemEntity implements java.io.Serializable  {
+public class OrderReqEntity implements java.io.Serializable  {
 
 	/**
 	 * 
@@ -32,9 +30,28 @@ public class OrderReqEntity extends DateItemEntity implements java.io.Serializab
 
     private String remarks;
 
+    public OrderReqEntity(String buyerId, String buyerName, String productId, String productName, 
+    		String sellerId, float purchasePrice, int purchaseNum, float purchaseAmount, 
+    		String transactionType, float transactionAmount, String remarks) {
+    	this.buyerId = buyerId;
+    	this.buyerName = buyerName;
+    	this.productId = productId;
+    	this.productName = productName;
+    	this.sellerId = sellerId;
+    	this.purchasePrice = purchasePrice;
+    	this.purchaseNum = purchaseNum;
+    	this.purchaseAmount = purchaseAmount;
+    	this.transactionType = transactionType;
+    	this.transactionAmount = transactionAmount;
+    	this.remarks = remarks;
+    }
 
 	public String getBuyerId() {
 		return buyerId;
+	}
+	
+	public void setBuyerId(String buyerId) {
+		this.buyerId = buyerId;
 	}
 
 	public String getBuyerName() {
@@ -43,10 +60,6 @@ public class OrderReqEntity extends DateItemEntity implements java.io.Serializab
 
 	public void setBuyerName(String buyerName) {
 		this.buyerName = buyerName;
-	}
-
-	public void setBuyerId(String buyerId) {
-		this.buyerId = buyerId;
 	}
 
 	public String getSellerId() {

@@ -4,13 +4,20 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.haly.entity.common.DateItemEntity;
 
 @Entity
 @Table(name = "transaction_tbl")
+@EntityListeners(AuditingEntityListener.class)
 public class TransactionEntity extends DateItemEntity implements java.io.Serializable  {
 
 
@@ -20,9 +27,9 @@ public class TransactionEntity extends DateItemEntity implements java.io.Seriali
 	private static final long serialVersionUID = -3415794716999010868L;
 
 	@Id
-//    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "transaction_id")
-    private String transactionId;
+    private int transactionId;
 
     @Column(name = "transaction_type")
     private String transactionType;
@@ -34,17 +41,18 @@ public class TransactionEntity extends DateItemEntity implements java.io.Seriali
     private float transactionAmount;
     
     @Column(name = "transaction_date")
+    @LastModifiedDate 
     private Date transactionDate;
     
     @Column(name = "remarks")
     private String remarks;
 
     
-	public String getTransactionId() {
+	public int getTransactionId() {
 		return transactionId;
 	}
 
-	public void setTransactionId(String transactionId) {
+	public void setTransactionId(int transactionId) {
 		this.transactionId = transactionId;
 	}
 

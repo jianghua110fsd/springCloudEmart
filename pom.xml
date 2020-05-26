@@ -10,12 +10,11 @@
   </parent>
   
   <groupId>com.haly</groupId>
-  <artifactId>springcloud</artifactId>
+  <artifactId>springcloudemart</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  
-  <name>springcloud</name>
-  <description>Parent module for emart</description>
+  <name>springcloudemart</name>
+  <description>Spring cloud for Emart</description>
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,8 +59,9 @@
   <modules>
     <module>springcloud-eureka-server</module>
     <module>ms-product-service</module>
-    <module>ms-order-service</module>
     <module>ms-login-service</module>
-    <module>ms-user-service</module>
+    <module>zuulgateway</module>
+  <module>ms-order-service</module>
+    <module>ms-zuul-service</module>
   </modules>
 </project>

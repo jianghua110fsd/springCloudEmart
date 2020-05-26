@@ -2,19 +2,21 @@ package com.haly.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.haly.entity.common.DateItemEntity;
 
 @Entity
 @Table(name = "seller_profile_tbl")
+@EntityListeners(AuditingEntityListener.class)
 public class SellerEntity extends DateItemEntity implements java.io.Serializable  {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2305639287530146074L;
-	
+	private static final long serialVersionUID = 4178447222883310610L;	
 	
 	@Id
 	@Column(name = "seller_id")
@@ -30,7 +32,7 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 	private String companyName;
 	
 	@Column(name = "GSTIN")
-	private String GSTN;
+	private String GSTIN;
 	
 	@Column(name = "company_brief")
 	private String companyBrief;
@@ -52,14 +54,14 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 		// TODO Auto-generated constructor stub
 	}
 
-	public SellerEntity(String sellerId, String sellerName, String password, String companyName, String GSTN, String companyBrief,
+	public SellerEntity(String sellerId, String sellerName, String password, String companyName, String GSTIN, String companyBrief,
 			String postalAddress, String website, String email, String contactNumber) {
 		super();
 		this.sellerId = sellerId;
 		this.sellerName = sellerName;
 		this.password = password;
 		this.companyName = companyName;
-		this.GSTN = GSTN;
+		this.GSTIN = GSTIN;
 		this.companyBrief = companyBrief;
 		this.postalAddress = postalAddress;
 		this.website = website;
@@ -69,8 +71,8 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 	
 	@Override
 	public String toString() {
-		return "SellerSignupServiceEntity [sellerId=" + sellerId + ", sellerName=" + sellerName + ", password=" + password
-				+ ", companyName=" + companyName + ", GSTN=" + GSTN + ", companyBrief=" + companyBrief + ", postalAddress=" + postalAddress
+		return "SellerEntity [sellerId=" + sellerId + ", sellerName=" + sellerName + ", password=" + password
+				+ ", companyName=" + companyName + ", GSTIN=" + GSTIN + ", companyBrief=" + companyBrief + ", postalAddress=" + postalAddress
 				+ ", website=" + website + ", email=" + email + ", contactNumber=" + contactNumber + "]";
 	}
 	
@@ -131,17 +133,17 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 	}
 
 	/**
-	 * @return the gSTN
+	 * @return the gSTIN
 	 */
-	public String getGSTN() {
-		return GSTN;
+	public String getGSTIN() {
+		return GSTIN;
 	}
 
 	/**
 	 * @param gSTN the gSTN to set
 	 */
-	public void setGSTN(String gSTN) {
-		GSTN = gSTN;
+	public void setGSTIN(String gSTIN) {
+		GSTIN = gSTIN;
 	}
 
 	/**
