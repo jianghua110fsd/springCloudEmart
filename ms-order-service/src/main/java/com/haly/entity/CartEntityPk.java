@@ -3,22 +3,24 @@ package com.haly.entity;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-import com.haly.entity.common.DateItemEntity;
-
 @Embeddable
-public class CartEntityPk extends DateItemEntity implements java.io.Serializable  {
+public class CartEntityPk implements java.io.Serializable {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -4493084902309559201L;
+	private static final long serialVersionUID = -5674956626095769990L;
 
-    @Column(name = "buyer_id")
+	
+	@Column(name = "buyer_id")
     private String buyerId;
 
 	@Column(name = "product_id")
 	private String productId;
 
+
+	CartEntityPk () {}
+	
 	public CartEntityPk (String buyerId, String productId) {
 		this.buyerId = buyerId;
 		this.productId = productId;

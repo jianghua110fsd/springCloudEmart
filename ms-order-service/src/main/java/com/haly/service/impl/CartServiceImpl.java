@@ -5,11 +5,9 @@ package com.haly.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
@@ -28,6 +26,9 @@ import com.haly.service.CartService;
  */
 @Service
 public class CartServiceImpl implements CartService {
+	
+	private static final String SUCCESS_CODE = "1";
+	private static final String FAILURE_CODE = "0";
 
 	@Autowired
 	private CartDao cartDao;
@@ -44,18 +45,23 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public CartEntity addToCart(String buyerId, CartReqEntity cartItem) {
+	public String addToCart(String buyerId, CartReqEntity cartItem) {
 		
-		CartEntityPk cp = new CartEntityPk(buyerId, cartItem.getProductId());
-		CartEntity ce = new CartEntity();
-		ce.setCartPk(cp);
+		CartEntity cei = new CartEntity(new CartEntityPk(buyerId, cartItem.getProductId()));
 		
-		BeanUtils.copyProperties(cartItem, ce);
-		ce.getCartPk().setBuyerId(buyerId);
-		ce.getCartPk().setProductId(cartItem.getProductId());
-		ce.setPurchaseAmount(cartItem.getPurchasePrice() * cartItem.getPurchaseNum());
+//		Example<CartEntity> example =Example.of(cei);
+//		List<CartEntity> ceOpt = this.cartDao.findAll(example);
+		int dataCnt = this.cartDao.getCartItemCntByKey(buyerId, cartItem.getProductId());
+//		if (ceOpt.isPresent()) {
+//		if (!CollectionUtils.isEmpty(ceOpt)) {
+		if (dataCnt > 0) {
+			return FAILURE_CODE;
+		}
 		
-		return this.cartDao.saveAndFlush(ce);
+		BeanUtils.copyProperties(cartItem, cei);
+		cei.setPurchaseAmount(cartItem.getPurchasePrice() * cartItem.getPurchaseNum());
+		this.cartDao.saveAndFlush(cei);
+		return SUCCESS_CODE;
 	}
 
 	@Override
@@ -64,39 +70,33 @@ public class CartServiceImpl implements CartService {
 		int cnt = 0;
 		
 		for (String prdId : prdIds) {
-			CartEntityPk cp = new CartEntityPk(buyerId, prdId);
-			CartEntity cei = new CartEntity();
-			cei.setCartPk(cp);
-			Optional<CartEntity> ceo = this.cartDao.findOne((Example<CartEntity>) cei);
-			CartEntity ced = ceo.get();
-			this.cartDao.delete(ced);
+//			CartEntity cei = new CartEntity(new CartEntityPk(buyerId, prdId));
 			
-			cnt ++;
+//			Example<CartEntity> example =Example.of(cei);
+//			Optional<CartEntity> ceOpt = this.cartDao.findOne(example);
+//			if (ceOpt.isPresent()) {
+			int dataCnt = this.cartDao.getCartItemCntByKey(buyerId, prdId);
+			if (dataCnt > 0) {
+//				this.cartDao.delete(ceOpt.get());
+				this.cartDao.deleteByKey(buyerId, prdId);
+				cnt ++;
+			}
 		}
 		
 		return cnt;
-		
-		// Referer
-//		Product product = new Product();
-//        product.setCategoryId(1);
-//        Example<Product> example = Example.of(product);
-//        Optional<Product> productOptional = respository.findOne(example);
-//
-//        if (productOptional.isPresent()) {
-//            Product productResult =   productOptional.get();
-//            System.out.println(productResult.toString());
-//        } else {
-//            // handle not found, return null or throw
-//            System.out.println("no exit!");
-//        }
-
 	}
 
 	@Override
 	public int clearCart(String buyerId) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		// If cart item exists
+		int cnt = this.cartDao.getCartItemCntByBuyerId(buyerId);
+		if (cnt > 0) {
+			this.cartDao.deleteByBuyerId(buyerId);
+		}
+		
+		return cnt;
 	}
 
-	
+
  }

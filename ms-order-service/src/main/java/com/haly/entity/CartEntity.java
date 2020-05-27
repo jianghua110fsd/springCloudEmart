@@ -3,13 +3,16 @@ package com.haly.entity;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.EntityListeners;
 import javax.persistence.Table;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.haly.entity.common.DateItemEntity;
 
 @Entity
 @Table(name = "cart_tbl")
+@EntityListeners(AuditingEntityListener.class)
 public class CartEntity extends DateItemEntity implements java.io.Serializable {
 
 	/**
@@ -23,7 +26,6 @@ public class CartEntity extends DateItemEntity implements java.io.Serializable {
 	@Column(name = "product_name")
 	private String productName;
 	
-	@Id
     @Column(name = "seller_id")
     private String sellerId;
     
@@ -39,6 +41,12 @@ public class CartEntity extends DateItemEntity implements java.io.Serializable {
     @Column(name = "remarks")
     private String remarks;
 
+
+    CartEntity () {}
+    
+    public CartEntity(CartEntityPk pk) {
+    	this.cartPk = pk;
+    }
     
 	public CartEntityPk getCartPk() {
 		return cartPk;

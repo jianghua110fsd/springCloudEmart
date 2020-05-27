@@ -21,7 +21,7 @@ public class DateItemEntity implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = -8143418657798942658L;
 
-	@Temporal(TemporalType.DATE)//生成yyyy-MM-dd类型的日期  
+	@Temporal(TemporalType.TIMESTAMP)//生成yyyy-MM-dd类型的日期  
 	//出参时间格式化  
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")  
 	//入参时，请求报文只需要传入yyyymmddhhmmss字符串进来，则自动转换为Date类型数据  
@@ -30,7 +30,7 @@ public class DateItemEntity implements java.io.Serializable {
 	@CreatedDate
     private Date createDatetime;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")  
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")  
     @Column(name = "update_datetime")
