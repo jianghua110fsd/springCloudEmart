@@ -25,8 +25,11 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import com.haly.dao.CategoryDao;
 import com.haly.dao.ProductDao;
+import com.haly.entity.CategoryEntity;
 import com.haly.entity.ProductEntity;
+import com.haly.entity.SubcategoryEntity;
 import com.haly.entity.condition.SearchConditionForBuyerEntity;
 import com.haly.service.ProductService;
 
@@ -40,6 +43,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductDao productDao;
+	
+	@Autowired
+	private CategoryDao categoryDao;
 
 	/**
 	 * 全件查询
@@ -148,6 +154,19 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
+	public List<CategoryEntity> getCategoryAll() {
+		return this.categoryDao.findAll();
+	}
+
+	@Override
+	public List<SubcategoryEntity> getSubCategories(String categoryId) {
+		List<Order> orders = new ArrayList<>();
+        orders.add(new Order(Direction.ASC, "subcategoryName"));
+        
+		return this.categoryDao.querySubsByCategoryId(categoryId, Sort.by(orders));
+	}	
+	
+	@Override
 	public ProductEntity saveProduct(ProductEntity product) {
 		
 		return this.productDao.save(product);
@@ -199,6 +218,7 @@ public class ProductServiceImpl implements ProductService {
 		};
 		
 		return queryCondition;
-	}	
+	}
+
 
 }

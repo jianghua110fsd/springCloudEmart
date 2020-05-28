@@ -37,7 +37,7 @@ public class CartServiceImpl implements CartService {
 	public List<CartRespEntity> getCartByBuyerId(String buyerId) {
 		
 		List<Order> orders = new ArrayList<>();
-        orders.add(new Order(Direction.ASC, "productName"));
+        orders.add(new Order(Direction.DESC, "createDatetime"));
         
 		List<CartRespEntity> ordList = 
 				this.cartDao.queryCartByBuyerId(buyerId, Sort.by(orders));
