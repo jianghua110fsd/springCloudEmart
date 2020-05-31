@@ -32,7 +32,7 @@ public class LoginSellerController
 		SellerEntity sellerInfo =  loginSService.getSellerInfo(token[0],token[1]);
     	if (sellerInfo != null) {
     		sPojo = new SellerPojo(sellerInfo.getSellerId(),sellerInfo.getSellerName(),sellerInfo.getCompanyName(),
-    			sellerInfo.getCompanyBrief(),sellerInfo.getGSTN(),sellerInfo.getPostalAddress(),sellerInfo.getWebsite(),
+    			sellerInfo.getGstin(),sellerInfo.getCompanyBrief(),sellerInfo.getPostalAddress(),sellerInfo.getWebsite(),
     			sellerInfo.getEmail(),sellerInfo.getContactNumber());
     	}
     	return sPojo;

@@ -5,7 +5,7 @@ public class SellerPojo {
 		private String sellerId;
 		private String sellerName;
 		private String companyName;
-		private String GSTN;
+		private String gstin;
 		private String companyBrief;
 		private String postalAddress;
 		private String  website;
@@ -15,13 +15,13 @@ public class SellerPojo {
 		public SellerPojo() {
 			super();
 		}
-		public SellerPojo(String sellerId, String sellerName, String companyName, String GSTN, String companyBrief,
+		public SellerPojo(String sellerId, String sellerName, String companyName, String gstin, String companyBrief,
 				String postalAddress, String website, String email, String contactNumber) {
 			super();
 			this.sellerId = sellerId;
 			this.sellerName = sellerName;
 			this.companyName = companyName;
-			this.GSTN = GSTN;
+			this.gstin = gstin;
 			this.companyBrief = companyBrief;
 			this.postalAddress = postalAddress;
 			this.website = website;
@@ -31,7 +31,7 @@ public class SellerPojo {
 		@Override
 		public String toString() {
 			return "SellerPojo [sellerId=" + sellerId + ", sellerName=" + sellerName + ", companyName=" + companyName 
-					+ ", GSTN=" + GSTN + ", companyBrief=" + companyBrief + ", postalAddress=" + postalAddress + ", website=" + website
+					+ ", gstin=" + gstin + ", companyBrief=" + companyBrief + ", postalAddress=" + postalAddress + ", website=" + website
 				    + ", email=" + email  + ", contactNumber=" + contactNumber + "]";
 		}
 		/**
@@ -70,18 +70,20 @@ public class SellerPojo {
 		public void setCompanyName(String companyName) {
 			this.companyName = companyName;
 		}
+
 		/**
-		 * @return the gSTN
+		 * @return the gstin
 		 */
-		public String getGSTN() {
-			return GSTN;
+		public String getGstin() {
+			return gstin;
 		}
 		/**
-		 * @param gSTN the gSTN to set
+		 * @param gstin the gstin to set
 		 */
-		public void setGSTN(String gSTN) {
-			GSTN = gSTN;
+		public void setGstin(String gstin) {
+			this.gstin = gstin;
 		}
+		
 		/**
 		 * @return the companyBrief
 		 */

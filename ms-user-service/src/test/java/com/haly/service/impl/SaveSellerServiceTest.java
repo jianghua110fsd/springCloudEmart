@@ -46,7 +46,7 @@ public class SaveSellerServiceTest  {
 		sellerPojo.setPassword("221qwe");
 		sellerPojo.setPostalAddress("dalian");
 		sellerPojo.setCompanyName("xianhua");
-		sellerPojo.setGSTIN("12312");
+		sellerPojo.setGstin("12312");
 		sellerPojo.setWebsite("w5@wer");
     	sellerPojo.setContactNumber("1234567890123");
 

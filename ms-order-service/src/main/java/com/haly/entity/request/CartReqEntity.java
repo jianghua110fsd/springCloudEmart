@@ -22,6 +22,8 @@ public class CartReqEntity implements java.io.Serializable  {
     
     private String remarks;
 
+    CartReqEntity() {}
+    
     public CartReqEntity(String buyerId, String productId, String productName, String sellerId, 
     		float purchasePrice, int purchaseNum, String remarks) {
     	this.buyerId = buyerId;

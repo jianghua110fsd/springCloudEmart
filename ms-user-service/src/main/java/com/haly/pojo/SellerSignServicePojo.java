@@ -6,7 +6,7 @@ public class SellerSignServicePojo {
 		private String sellerName;
 		private String password;
 		private String companyName;
-		private String GSTIN;
+		private String gstin;
 		private String companyBrief;
 		private String postalAddress;
 		private String  website;
@@ -16,24 +16,27 @@ public class SellerSignServicePojo {
 		public SellerSignServicePojo() {
 			super();
 		}
-		public SellerSignServicePojo(String sellerId, String sellerName, String password, String companyName, String GSTIN, String companyBrief,
+		public SellerSignServicePojo(String sellerId, String sellerName, String password, String companyName, String gstin, String companyBrief,
 				String postalAddress, String website, String email, String contactNumber) {
 			super();
 			this.sellerId = sellerId;
 			this.sellerName = sellerName;
 			this.password = password;
 			this.companyName = companyName;
-			this.GSTIN = GSTIN;
+			this.gstin = gstin;
 			this.companyBrief = companyBrief;
 			this.postalAddress = postalAddress;
 			this.website = website;
 			this.email = email;
 			this.contactNumber = contactNumber;
+			System.out.println("anGSTIN=:" + gstin + "111111111111111111" );
 		}
 		@Override
 		public String toString() {
+			System.out.println("anGSTIN=:" + gstin + "+++++++++++++++" );
 			return "SellerSignupServicePojo [sellerId=" + sellerId + ", sellerName=" + sellerName + ", password=" + password
-					+ ", companyName=" + companyName + ", GSTIN=" + GSTIN + ", companyBrief=" + companyBrief + ", postalAddress=" + postalAddress + ", website=" + website
+					+ ", companyName=" + companyName + ", gstin=" + gstin + ", companyBrief=" + companyBrief 
+					+ ", postalAddress=" + postalAddress + ", website=" + website
 				    + ", email=" + email  + ", contactNumber=" + contactNumber + "]";
 		}
 		/**
@@ -86,16 +89,16 @@ public class SellerSignServicePojo {
 		}
 
 		/**
-		 * @return the gSTIN
+		 * @return the gstin
 		 */
-		public String getGSTIN() {
-			return GSTIN;
+		public String getGstin() {
+			return gstin;
 		}
 		/**
-		 * @param gSTIN the gSTIN to set
+		 * @param gstin the gstin to set
 		 */
-		public void setGSTIN(String gSTIN) {
-			GSTIN = gSTIN;
+		public void setGstin(String gstin) {
+			this.gstin = gstin;
 		}
 		
 		/**

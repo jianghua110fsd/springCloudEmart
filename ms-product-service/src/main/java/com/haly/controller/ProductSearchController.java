@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,11 @@ public class ProductSearchController {
 	@Autowired
 	private ProductService productService;
 
+
+	@RequestMapping("/searchid")
+    public ProductEntity searchId(@RequestParam(value = "prdId") String prdId) {
+    	return productService.getProductById(prdId);
+    }
     
     @RequestMapping("/search")
 //    @CrossOrigin(origins = "*")
@@ -70,15 +76,15 @@ public class ProductSearchController {
     }
     
     @RequestMapping("/fsearch")
-//  public List<ProductEntity> searchByFilters(@RequestBody SearchConditionForBuyerEntity bcond) {
+  public List<ProductEntity> searchByFilters(@RequestBody SearchConditionForBuyerEntity bcond) {
     // test code start
-	public List<ProductEntity> searchByFilters() {
+//	public List<ProductEntity> searchByFilters() {
   	
-    	SearchConditionForBuyerEntity bcond = new SearchConditionForBuyerEntity();
+//    	SearchConditionForBuyerEntity bcond = new SearchConditionForBuyerEntity();
 //    	bcond.setCategoryId("分类1");
 //    	bcond.setSubcategoryId("子分类3");
-    	bcond.setPriceFrom("35.06");
-    	bcond.setPriceTo("69");
+//    	bcond.setPriceFrom("35.06");
+//    	bcond.setPriceTo("69");
 	  	// test code end
   	
 	  	return this.productService.getProductByFilters(bcond);

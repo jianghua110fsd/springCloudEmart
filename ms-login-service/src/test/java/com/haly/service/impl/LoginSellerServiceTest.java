@@ -46,7 +46,7 @@ public class LoginSellerServiceTest  {
     	sellerInfo.setPassword("221qwe");
     	sellerInfo.setPostalAddress("dalian");
     	sellerInfo.setCompanyName("xianhua");
-    	sellerInfo.setGSTN("sssssss");
+    	sellerInfo.setGstin("sssssss");
     	sellerInfo.setWebsite("w5@wer");
     	sellerInfo.setContactNumber("1234567890123");
 

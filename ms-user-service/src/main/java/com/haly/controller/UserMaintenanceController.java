@@ -63,7 +63,9 @@ public class UserMaintenanceController
 	
 	@PostMapping(value = "/sinsert")
 	@CrossOrigin
-    public SellerSignServicePojo insertSuser(@RequestBody SellerSignServicePojo sellerInfo) {
-        return userSInsertService.saveSeller(sellerInfo);
+    public SellerSignServicePojo insertSeller(@RequestBody SellerSignServicePojo sellerPojo) {
+		System.out.println("GSTIN=:" + sellerPojo.getGstin() + "--------------------" );
+		System.out.println("CompanyBrief=:" + sellerPojo.getCompanyBrief() + "--------------------" );
+        return userSInsertService.saveSeller(sellerPojo);
     }
 }

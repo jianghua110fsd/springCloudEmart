@@ -32,7 +32,7 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 	private String companyName;
 	
 	@Column(name = "GSTIN")
-	private String GSTIN;
+	private String gstin;
 	
 	@Column(name = "company_brief")
 	private String companyBrief;
@@ -54,14 +54,14 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 		// TODO Auto-generated constructor stub
 	}
 
-	public SellerEntity(String sellerId, String sellerName, String password, String companyName, String GSTIN, String companyBrief,
+	public SellerEntity(String sellerId, String sellerName, String password, String companyName, String gstin, String companyBrief,
 			String postalAddress, String website, String email, String contactNumber) {
 		super();
 		this.sellerId = sellerId;
 		this.sellerName = sellerName;
 		this.password = password;
 		this.companyName = companyName;
-		this.GSTIN = GSTIN;
+		this.gstin = gstin;
 		this.companyBrief = companyBrief;
 		this.postalAddress = postalAddress;
 		this.website = website;
@@ -72,7 +72,8 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 	@Override
 	public String toString() {
 		return "SellerEntity [sellerId=" + sellerId + ", sellerName=" + sellerName + ", password=" + password
-				+ ", companyName=" + companyName + ", GSTIN=" + GSTIN + ", companyBrief=" + companyBrief + ", postalAddress=" + postalAddress
+				+ ", companyName=" + companyName + ", gstin=" + gstin + ", companyBrief=" + companyBrief 
+				+ ", postalAddress=" + postalAddress
 				+ ", website=" + website + ", email=" + email + ", contactNumber=" + contactNumber + "]";
 	}
 	
@@ -133,17 +134,17 @@ public class SellerEntity extends DateItemEntity implements java.io.Serializable
 	}
 
 	/**
-	 * @return the gSTIN
+	 * @return the gstin
 	 */
-	public String getGSTIN() {
-		return GSTIN;
+	public String getGstin() {
+		return gstin;
 	}
 
 	/**
-	 * @param gSTN the gSTN to set
+	 * @param gstin the gstin to set
 	 */
-	public void setGSTIN(String gSTIN) {
-		GSTIN = gSTIN;
+	public void setGstin(String gstin) {
+		this.gstin = gstin;
 	}
 
 	/**

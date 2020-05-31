@@ -3,6 +3,7 @@ package com.haly.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,10 +33,10 @@ public class CartController
 	}
 	
 	@RequestMapping("/addcart")
-//	public String addToCart(@RequestBody CartReqEntity cre) {
-	public String addToCart(@RequestParam(value = "buyer") String buyerId, @RequestParam(value = "product") String product) {
+	public String addToCart(@RequestBody CartReqEntity cre) {
+//	public String addToCart(@RequestParam(value = "buyer") String buyerId, @RequestParam(value = "product") String product) {
 		
-		CartReqEntity cre = new CartReqEntity(buyerId, product, "Product***", "s11", 13.5f, 3,  "test");
+//		CartReqEntity cre = new CartReqEntity(buyerId, product, "Product***", "s11", 13.5f, 3,  "test");
 		
 		return this.cartService.addToCart(cre.getBuyerId(), cre);
 	}
