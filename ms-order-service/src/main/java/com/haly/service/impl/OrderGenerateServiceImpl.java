@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.haly.dao.CartDao;
 import com.haly.dao.OrderDao;
 import com.haly.dao.TransactionDao;
 import com.haly.entity.OrderHistoryEntity;
@@ -31,6 +32,8 @@ public class OrderGenerateServiceImpl implements OrderGenerateService {
 	
 	@Autowired
 	private TransactionDao transactionDao;
+	@Autowired
+	private CartDao cartDao;
 
 
 	@Override
@@ -53,7 +56,6 @@ public class OrderGenerateServiceImpl implements OrderGenerateService {
 		trn.setBuyerId(ords.get(0).getBuyerId());
 		trn.setTransactionAmount(ords.get(0).getTransactionAmount());
 		// Transaction date auto generated
-//		trn.setTransactionDate(new Date());
 		
 		TransactionEntity rtnTrn = this.transactionDao.save(trn);
 		
@@ -62,10 +64,11 @@ public class OrderGenerateServiceImpl implements OrderGenerateService {
 			OrderHistoryEntity oh = new OrderHistoryEntity();
 			BeanUtils.copyProperties(ord, oh);
 			// Purchase date auto generated
-//			oh.setPurchaseDate(new Date());
 			oh.setTransactionId(rtnTrn.getTransactionId());
 			
 			this.orderDao.save(oh);
+			// Delete cart item accordingly
+			this.cartDao.deleteByKey(ord.getBuyerId(), ord.getProductId());
 		}
 		
 		return String.valueOf(rtnTrn.getTransactionId());

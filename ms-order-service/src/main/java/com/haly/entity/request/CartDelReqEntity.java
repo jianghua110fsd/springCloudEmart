@@ -12,6 +12,8 @@ public class CartDelReqEntity implements java.io.Serializable  {
     
 	private String[] productIds;
 
+	CartDelReqEntity(){}
+	
 	public String getBuyerId() {
 		return buyerId;
 	}

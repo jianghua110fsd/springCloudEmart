@@ -37,7 +37,7 @@ public class CategoryController {
     }
     
     @RequestMapping("/scsearch")
-  public List<SubcategoryEntity> searchByFilters(@RequestParam(value = "catgoryid") String categoryId) {
+  public List<SubcategoryEntity> searchByFilters(@RequestParam(value = "categoryId") String categoryId) {
   	
     	List<SubcategoryEntity> catList = this.productService.getSubCategories(categoryId);
 

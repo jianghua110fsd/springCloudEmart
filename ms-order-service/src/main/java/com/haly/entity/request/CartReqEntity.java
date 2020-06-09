@@ -21,6 +21,9 @@ public class CartReqEntity implements java.io.Serializable  {
     private int purchaseNum;
     
     private String remarks;
+    
+    private boolean fromDetail;
+    
 
     CartReqEntity() {}
     
@@ -89,6 +92,14 @@ public class CartReqEntity implements java.io.Serializable  {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public boolean isFromDetail() {
+		return fromDetail;
+	}
+
+	public void setFromDetail(boolean fromDetail) {
+		this.fromDetail = fromDetail;
 	}
 
 }

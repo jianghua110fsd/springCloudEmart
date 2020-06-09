@@ -26,10 +26,12 @@ public class ProductSearchController {
 	@Autowired
 	private ProductService productService;
 
-
-	@RequestMapping("/searchid")
-    public ProductEntity searchId(@RequestParam(value = "prdId") String prdId) {
+    
+    @RequestMapping("/searchid")
+    public ProductEntity searchById(@RequestParam(value = "prdId") String prdId) {
+    	
     	return productService.getProductById(prdId);
+    	
     }
     
     @RequestMapping("/search")

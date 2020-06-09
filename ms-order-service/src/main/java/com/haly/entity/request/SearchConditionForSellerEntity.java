@@ -10,7 +10,7 @@ public class SearchConditionForSellerEntity extends PageEntiy{
     
     private String purchaseDateTo;
 
-    
+
 	public String getSellerId() {
 		return sellerId;
 	}

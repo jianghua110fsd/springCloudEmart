@@ -30,6 +30,8 @@ public class OrderReqEntity implements java.io.Serializable  {
 
     private String remarks;
 
+    OrderReqEntity() {}
+    
     public OrderReqEntity(String buyerId, String buyerName, String productId, String productName, 
     		String sellerId, float purchasePrice, int purchaseNum, float purchaseAmount, 
     		String transactionType, float transactionAmount, String remarks) {
