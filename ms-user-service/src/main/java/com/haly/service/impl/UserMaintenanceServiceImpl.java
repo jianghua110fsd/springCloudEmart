@@ -38,7 +38,7 @@ public class UserMaintenanceServiceImpl implements UserMaintenanceService {
     public BuyerSignServicePojo saveBuyer(BuyerSignServicePojo buyerPojo) {
 
     	BuyerEntity buyerEntity = new BuyerEntity(buyerPojo.getBuyerId(),buyerPojo.getBuyerName(),
-    			buyerPojo.getPassword(),buyerPojo.getEmail(),buyerPojo.getPostalAddress(),buyerPojo.getPostalAddress());
+    			buyerPojo.getPassword(),buyerPojo.getEmail(),buyerPojo.getMobileNumberS(),buyerPojo.getPostalAddress());
     	
         buyerDao.saveAndFlush(buyerEntity);
         return buyerPojo;
