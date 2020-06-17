@@ -2,6 +2,8 @@ package com.haly.entity.response;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class TransRespEntity extends OrderRespEntity implements java.io.Serializable  {
 
 
@@ -19,6 +21,7 @@ public class TransRespEntity extends OrderRespEntity implements java.io.Serializ
 	
 	private float transactionAmount;
 	
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	private Date transactionDate;
     
 	private String remarks;

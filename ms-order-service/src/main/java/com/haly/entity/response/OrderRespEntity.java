@@ -2,6 +2,8 @@ package com.haly.entity.response;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class OrderRespEntity implements java.io.Serializable  {
 
     /**
@@ -11,6 +13,7 @@ public class OrderRespEntity implements java.io.Serializable  {
 
 	private int orderNo;
     
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date orderDate;
 
 	private String productId;

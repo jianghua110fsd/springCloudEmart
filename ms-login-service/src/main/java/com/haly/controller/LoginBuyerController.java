@@ -33,7 +33,7 @@ public class LoginBuyerController
     	BuyerEntity buyerInfo = loginBService.getBuyerInfo(token[0],token[1]);
     	if (buyerInfo != null) {
         bPojo = new BuyerPojo(buyerInfo.getBuyerId(),buyerInfo.getBuyerName(),
-        	buyerInfo.getEmail(),buyerInfo.getPostalAddress(),buyerInfo.getPostalAddress());
+        	buyerInfo.getEmail(),buyerInfo.getMobileNumber(),buyerInfo.getPostalAddress());
     	}
     	return bPojo;
     }
